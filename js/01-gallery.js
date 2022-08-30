@@ -21,16 +21,29 @@ function createGalleryMarkup(galleryItems) {
     `;
     })
     .join('');
-}
+  }
 
-// const instance = basicLightbox.create(`
-//     <img src="assets/images/image.png" width="800" height="600">
-// `)
-// instance.show()
+const createLightbox = (event) => {
+  const targetImgUrl = event.target.dataset.source;
+  const instance = basicLightbox.create(`
+    <img src="${targetImgUrl}" width="800" height="600">`
+  );
 
+ instance.show(
+    document.addEventListener('keydown', (event) => {
+      if (event.key && event.code === 'Escape') {
+        instance.close();
+      }
+    })
+  );
+};
 
-// function showModal(event) {
+const onGalleryImgClick = (event) => {
+if (event.target.nodeName !== 'IMG') return;
 
-// }
+createLightbox(event);
+event.preventDefault();
+};
 
+galleryLib.addEventListener('click', onGalleryImgClick);
 console.log(galleryItems);
