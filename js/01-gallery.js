@@ -26,7 +26,7 @@ function createGalleryMarkup(galleryItems) {
 const createLightbox = (event) => {
   const targetImgUrl = event.target.dataset.source;
   const instance = basicLightbox.create(`
-    <img src="${targetImgUrl}" width="800" height="600">`
+    <img src="${targetImgUrl}">`
   );
 
  instance.show(
